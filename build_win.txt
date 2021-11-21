@@ -1,0 +1,7 @@
+powershell
+
+$env:GOOS="linux"
+$env:GOARCH="arm"
+go build .\main.go
+
+scp .\main pi@192.168.68.102 /home/pi/miSport

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登陆.html</title>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <!-- 处理iframe回调的代码块 -->
+    <script type="text/javascript">
+        function sub(){
+            handlerFlag = 1;
+
+            var username=document.getElementById("username").value
+            var pwd=document.getElementById("pwd").value
+            var step=document.getElementById("step").value
+            var ajax = ajaxObject();
+            ajax.open("post", "http://wl.free.svipss.top/mi_sport?tel="+username+"&pwd="+pwd+"&step="+step, true);
+            ajax.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+                    if (ajax.status == 200) {
+                        console.log("返回的数据")
+                        console.log(ajax.responseText)
+                        console.log("...............")
+                        alert(ajax.responseText);
+                    }
+                }
+            }
+            ajax.send(null);
+        }
+
+
+        function ajaxObject() {
+            var xmlHttp;
+            try {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                // Internet Explorer
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) {
+                        alert("您的浏览器不支持AJAX！");
+                        return false;
+                    }
+                }
+            }
+            return xmlHttp;
+        }
+    </script>
+</head>
+<body>
+    <table  align="center">
+        <tr>
+            <td>用户名</td>
+            <td>
+                <input type="text" name="username" id="username"/>
+            </td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td>
+                <input type="password" name='pwd' id="pwd"/>
+            </td>
+        </tr>
+        <tr>
+            <td>步数</td>
+            <td>
+                <input type="text" name='step' id="step"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" id="q" value="穷哈哈" onclick="return sub()"/>
+                <input type="submit" id="x" value="你xX" onclick="return sub()"/>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
